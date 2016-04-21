@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html ng-app="educo">
+    <head>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <base href="/"></base>
+        <title ng-bind="systemSettings ? systemSettings.workplace : 'educo'"></title>
+    </head>
+    <body layout="row" ng-controller="AppCtrl">
+      <div class="preloader" ng-if="!appReady">
+        <div class="preloader-content">
+          <img src="images/loader.gif" width="300">
+          <h1>Loading</h1>
+          <p>Please Wait</p>
+        </div>
+      </div>
+      <md-sidenav layout="column" class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-sm')" ng-if="isLoggedIn">
+        <md-toolbar layout="row">
+          <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" ng-if="isLoggedIn">
+            <span class="visuallyhidden">Menu</span>
+          </button>
+          <h1>{{systemSettings ? systemSettings.workplace : 'educo'}}</h1>
+        </md-toolbar>
+        <div class="md-padding sidebar-list" layout-padding>
+            <div ng-include="'/system/public/views/search.html'"></div>
+            
+            <!-- Load user chats -->
+            <div ng-include="'/modules/chats/views/chatsList.html'"></div>
+
+            <!-- Load user streams -->
+            <div ng-include="'/modules/streams/views/streamsList.html'"></div>
+        </div>
+
+      </md-sidenav>
+      <div layout="column" flex>
+
+          <md-toolbar layout="column">
+            <div class="md-toolbar-tools">
+                <span class="badge menu-badge" hide-gt-sm ng-if="badges && badges.messageBadge">{{ badges.messageBadge }}</span>
+                <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" ng-if="isLoggedIn">
+                  <span class="visuallyhidden">Menu</span>
+                </button>
+                <md-button class="md-old-style" ng-if="isLoggedIn" ng-click="goHome($event)" title="Home">
+                  <md-inline-list-icon class="fa fa-home"></md-inline-list-icon>
+                </md-button>
+                <span hide-sm ng-if="!isLoggedIn">{{systemSettings ? systemSettings.workplace : 'educo'}}</span>
+                <span hide-sm hide-md class="tiny" flex>&nbsp; {{barTitle}}</span>
+                <span flex hide-md></span>
+                <md-button class="md-old-style" ng-if="isLoggedIn && (user.roles.indexOf('admin') !== -1)" href="/settings" title="Settings">
+                  <md-inline-list-icon class="fa fa-cog"></md-inline-list-icon>
+                </md-button>
+                <md-button class="md-old-style" ng-if="isLoggedIn" title="Invite" ng-click="inviteOthers($event)" ng-controller="InviteCtrl">
+                  <md-inline-list-icon class="fa fa-envelope"></md-inline-list-icon>
+                </md-button>
+                <div ng-controller="notificationsCtrl">
+                  <md-button class="md-old-style" ng-if="isLoggedIn" ng-click="showUserNotifications($event)" title="Alerts">
+                    <md-inline-list-icon class="fa fa-bell notification-count"> <span ng-if="notificationCount">{{notificationCount}} </span></md-inline-list-icon>
+                  </md-button>
+                    <md-button class="md-old-style" ng-if="isLoggedIn" title="backpack">
+                        <md-inline-list-icon class="fa fa-book"></md-inline-list-icon>
+                    </md-button>
+
+                  <div class="notifications md-whiteframe-z1" ng-if="isLoggedIn && notificationShown">
+                    <md-list>
+                      <!-- notif loop start -->
+                      <md-list-item class="item" ng-repeat="item in items">
+                        <md-button href="{{item.href}}" ng-click="markRead(item)" layout-wrap>
+                          <md-item-content layout="row">
+                              <img ng-src="{{item.actor.face || '/images/user.jpg'}}" class="face" alt="{{item.actor.name}}">
+                              <div>
+                                <p>{{::item.display.text}}</p>
+                                <span class="mute">{{::item.created | date:'medium'}}</span>
+                              </div>
+                          </md-item-content>
+                        </md-button>
+                      </md-item>
+                      <!-- notif loop -->
+
+                      <!-- no notif start -->
+                      <md-item class="item" ng-if="!items.length">
+                        <md-button ng-click="showUserNotifications()">
+                          <md-item-content>
+                              <div class="md-tile-content">
+                                <p>No unread notifications.</p>
+                              </div>
+                          </md-item-content>
+                        </md-button>
+                      </md-item>
+                      <!-- no notif -->
+                    </md-list>
+                  </div>
+                </div>
+
+                <md-button class="user-profile-btn md-old-style" ng-if="isLoggedIn" ng-click="showUserActions($event)" title="Profile">
+                  <md-inline-list-icon class="fa fa-user"></md-inline-list-icon>
+                </md-button>
+
+            </div>
+          </md-toolbar>
+
+
+          <div layout="column" flex id="content">
+            
+            <md-content flex class="md-padding greyed" md-scroll-y>
+              <div class="main-view" ng-view layout="row" layout-align="center" layout-fill></div>
+            </md-content>
+          </div>
+          
+      </div>
+
+      <!-- Main angular file -->
+      <script src="/bower_components/socket.io-client/socket.io.js"></script>
+      <script src="/dist/libs.js"></script>
+      <script src="/dist/scripts.js"></script>
+
+      <!-- Non-critical CSS -->
+      <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
+      <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.min.css">
+    </body>
+</html>
+
