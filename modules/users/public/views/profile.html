@@ -13,6 +13,8 @@
                 <h2>{{::profile.name}} <md-inline-list-icon title="Status" class="fa fa-circle tiny status" ng-class="{online: profile.loggedIn || selfProfile}"></md-inline-list-icon></h2>
                 <h3>@{{::profile.username}}</h3>
                 <p>{{::profile.designation}}</p>
+                <p>{{::profile.role}}</p>
+                <p>{{::profile.email}}</p>
               </div>
               <div ng-if="editMode">
                 <form name="userForm" ng-submit="updateProfile(userForm.$valid)" novalidate>

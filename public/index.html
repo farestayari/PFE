@@ -22,7 +22,7 @@
           <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" ng-if="isLoggedIn">
             <span class="visuallyhidden">Menu</span>
           </button>
-          <h1>{{systemSettings ? systemSettings.workplace : 'educo'}}</h1>
+          <h1>Hi {{user.name}}</h1>
         </md-toolbar>
         <div class="md-padding sidebar-list" layout-padding>
             <div ng-include="'/system/public/views/search.html'"></div>

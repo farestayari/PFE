@@ -1,6 +1,6 @@
   <md-card flex-sm="95" flex-gt-sm="90" flex-gt-md="80">
     <md-card-content>
-      <h2>{{systemSettings.tagline}}</h2>
+      <h2>Signup now</h2>
       <p>Becoming a member is quick &amp; easy.</p>
       <md-tabs class="md-accent" md-dynamic-height>
         <md-tab label="Login">
@@ -65,13 +65,28 @@
               </md-input-container>
 
               <md-input-container>
-                <label>Designation</label>
+                <label>Date of Birth</label>
+                <input type="date" name="birthdate" ng-model="birthdate" required>
+              </md-input-container>
+
+              <md-input-container>
+                <label>Role</label>
+                <input type="text" name="role" ng-model="role">
+              </md-input-container>
+
+              <md-input-container>
+                <label>University</label>
                 <input name="name" ng-model="designation" required md-maxlength="100" minlength="2">
                 <div ng-messages="userForm.designation.$error" ng-show="userForm.bio.$dirty">
                   <div ng-message="required">This is required!</div>
                   <div ng-message="md-maxlength">That's too long!</div>
                   <div ng-message="minlength">That's too short!</div>
                 </div>
+              </md-input-container>
+
+              <md-input-container>
+                <label>Adress</label>
+                <input name="Adress" type="text" ng-model="adress" required md-maxlength="100">
               </md-input-container>
 
               <md-input-container>
@@ -95,6 +110,9 @@
               </md-input-container>
               <md-button class="md-primary md-raised">
                 Register
+              </md-button>
+              <md-button type="Reset" class="md-primary md-raised">
+                Reset
               </md-button>
             </form>
           </div>

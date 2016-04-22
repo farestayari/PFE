@@ -59,6 +59,16 @@ var UserSchema = new Schema({
       match: [emailRE, 'Please enter a valid email'],
     validate: [validateUniqueEmail, 'E-mail address is already in-use']
   },
+  adresse:{
+    type: String,
+    required:false,
+    get: escapeProperty
+  },
+  birthdate:{
+    type:Date,
+    required:true,
+    get: escapeProperty
+  },
   designation: {
     type: String,
     required: false,
@@ -66,6 +76,11 @@ var UserSchema = new Schema({
   },
   face: {
     type: String
+  },
+  role:{
+    type:String,
+    required:true,
+    get: escapeProperty
   },
   roles: {
     type: Array,

@@ -446,6 +446,9 @@ angular.module('educo.users')
             email: this.email,
             name: this.name,
             username: this.username,
+            adresse: this.adresse,
+            birthdate: this.adresse,
+            role:this.role,
             designation: this.designation,
             password: this.password
           });
