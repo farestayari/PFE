@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
         <link rel="stylesheet" href="/css/main.css">
         <base href="/"></base>
-        <title ng-bind="systemSettings ? systemSettings.workplace : 'educo'"></title>
+        <title>Educo</title>
     </head>
     <body layout="row" ng-controller="AppCtrl">
       <div class="preloader" ng-if="!appReady">
@@ -59,7 +59,7 @@
                   <md-button class="md-old-style" ng-if="isLoggedIn" ng-click="showUserNotifications($event)" title="Alerts">
                     <md-inline-list-icon class="fa fa-bell notification-count"> <span ng-if="notificationCount">{{notificationCount}} </span></md-inline-list-icon>
                   </md-button>
-                    <md-button class="md-old-style" ng-if="isLoggedIn" title="backpack">
+                    <md-button class="md-old-style" ng-if="isLoggedIn" title="backpack" href="/course">
                         <md-inline-list-icon class="fa fa-book"></md-inline-list-icon>
                     </md-button>
 
@@ -114,7 +114,63 @@
       <!-- Main angular file -->
       <script src="/bower_components/socket.io-client/socket.io.js"></script>
       <script src="/dist/libs.js"></script>
-      <script src="/dist/scripts.js"></script>
+      <!--<script src="/dist/scripts.js"></script>-->
+
+
+      <script type="text/javascript" src="/system/utils.js"></script>
+      <script type="text/javascript" src="/system/index.js"></script>
+      <script type="text/javascript" src="/system/settings/settings.js"></script>
+      <script type="text/javascript" src="/system/settings/settings.routes.js"></script>
+      <script type="text/javascript" src="/system/settings/settings.services.js"></script>
+      <script type="text/javascript" src="/system/settings/settings.controllers.js"></script>
+
+      <script type="text/javascript"src="/modules/course/course.js"></script>
+      <script type="text/javascript"src="/modules/course/course.routes.js"></script>
+
+
+      <script type="text/javascript" src="/modules/users/users.js"></script>
+      <script type="text/javascript" src="/modules/users/users.controllers.js"></script>
+      <script type="text/javascript" src="/modules/users/users.routes.js"></script>
+      <script type="text/javascript" src="/modules/users/users.services.js"></script>
+
+
+
+      <script type="text/javascript" src="/modules/streams/streams.js"></script>
+      <script type="text/javascript" src="/modules/streams/streams.controllers.js"></script>
+      <script type="text/javascript" src="/modules/streams/streams.routes.js"></script>
+      <script type="text/javascript" src="/modules/streams/streams.services.js"></script>
+
+
+
+      <script type="text/javascript" src="/modules/activities/activities.js"></script>
+      <script type="text/javascript" src="/modules/activities/activities.controllers.js"></script>
+      <script type="text/javascript" src="/modules/activities/activities.routes.js"></script>
+      <script type="text/javascript" src="/modules/activities/activities.services.js"></script>
+
+
+
+      <script type="text/javascript" src="/modules/posts/posts.js"></script>
+      <script type="text/javascript" src="/modules/posts/posts.controllers.js"></script>
+      <script type="text/javascript" src="/modules/posts/posts.routes.js"></script>
+      <script type="text/javascript" src="/modules/posts/posts.services.js"></script>
+
+
+
+      <script type="text/javascript" src="/modules/chats/chats.js"></script>
+      <script type="text/javascript" src="/modules/chats/chats.controllers.js"></script>
+      <script type="text/javascript" src="/modules/chats/chats.routes.js"></script>
+      <script type="text/javascript" src="/modules/chats/chats.services.js"></script>
+
+
+      <script type="text/javascript" src="/modules/notifications/notifications.js"></script>
+      <script type="text/javascript" src="/modules/notifications/notifications.controllers.js"></script>
+      <script type="text/javascript" src="/modules/notifications/notifications.routes.js"></script>
+      <script type="text/javascript" src="/modules/notifications/notifications.services.js"></script>
+
+
+      <script type="text/javascript" src="/app.js"></script>
+
+
 
       <!-- Non-critical CSS -->
       <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">

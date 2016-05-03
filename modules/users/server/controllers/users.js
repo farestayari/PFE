@@ -76,7 +76,7 @@ module.exports = function(System) {
      * Status of the user account
      * @type {Boolean}
      */
-    var active = false;
+    var active = true;
 
     /**
      * Check if this is the first user
@@ -155,27 +155,10 @@ module.exports = function(System) {
           return json.unhappy(err, res);
         }
 
-        if (!user.active) {
+        if (user.active) {
           /**
            * Send activation email
            */
-          System.plugins.emailing.generate({
-            name: user.name,
-            message: 'Welcome! In order to continue using the platform, you will need to activate your account by clicking the below link:',
-            action: 'Activate My Account',
-            subject: 'Actiate Your Account',
-            href: System.config.baseURL + '/activate/' + user._id + '/' + escape(user.activationCode)
-          }, function(html) {
-            var data = {
-              actor: {
-                name: 'Activation'
-              }
-            };
-            data.html = html;
-            System.plugins.notifications.sendByEmail(user, data);
-            return json.happy(user, res);
-          });
-        } else {
           return json.happy({
             record: user,
             token: user.token

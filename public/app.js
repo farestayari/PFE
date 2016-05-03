@@ -7,6 +7,7 @@ var app = angular.module('educo', [
   'educo.activities',
   'educo.notifications',
   'educo.settings',
+    //'educo.courses',
   'ngMaterial']);
 
 app.controller('AppCtrl', [

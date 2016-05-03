@@ -7,6 +7,7 @@ angular.module('educo.posts')
     '$rootScope',
     '$routeParams',
     '$timeout',
+    '$upload',
     'appPosts',
     'appAuth',
     'appToast',
@@ -16,7 +17,7 @@ angular.module('educo.posts')
     'appUsersSearch',
     'appPostsFeed',
     'resolvedFeeds',
-    function($scope, $route, $rootScope, $routeParams, $timeout, appPosts, appAuth, appToast, appStorage, appLocation, appWebSocket, appUsersSearch, appPostsFeed, resolvedFeeds) {
+    function($scope, $route, $rootScope, $routeParams, $timeout,$upload, appPosts, appAuth, appToast, appStorage, appLocation, appWebSocket, appUsersSearch, appPostsFeed, resolvedFeeds) {
       $scope.content = '';
       $scope.lastUpdated = 0;
       $scope.postForm = '';
@@ -27,6 +28,8 @@ angular.module('educo.posts')
       $scope.feedPage = 0;
       $scope.showBack = false;
       $scope.mentionsResults = [];
+
+
 
       var hashtag = $routeParams.hashtag;
       var userId = $scope.timelinePage = $routeParams.userId;
@@ -80,6 +83,7 @@ angular.module('educo.posts')
          * @type {Boolean}
          */
         $scope.noMorePosts = !data.res.morePages;
+
         /**
          * Set the updated timestamp
          */
@@ -272,6 +276,8 @@ angular.module('educo.posts')
        * @param  {Boolean} isValid Will be true if form validation passes
        * @return {Void}
        */
+
+
       $scope.create = function(isValid, item) {
         if (isValid) {
           var post = new appPosts.single({

@@ -250,6 +250,7 @@ angular.module('educo.users')
          * @type {Boolean}
          */
         $scope.noMorePosts = !data.res.morePages;
+
         /**
          * Set the updated timestamp
          */
@@ -424,8 +425,6 @@ angular.module('educo.users')
     'appLocation',
     'appDialog',
     function($scope, $rootScope, appUsers, appAuth, appToast, appStorage, appLocation, appDialog) {
-      // $scope.email = 'riten.sv@gmail.com';
-      // $scope.password = 'jjk3e0jx';
 
       /**
        * Reset the form
@@ -447,7 +446,7 @@ angular.module('educo.users')
             name: this.name,
             username: this.username,
             adresse: this.adresse,
-            birthdate: this.adresse,
+            birthdate: this.birthdate,
             role:this.role,
             designation: this.designation,
             password: this.password

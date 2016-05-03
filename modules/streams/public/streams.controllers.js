@@ -78,10 +78,6 @@ angular.module('educo.streams')
         }, 500);
       };
 
-      /**
-       * Unsubscribe from a specific stream
-       * @return {Void}
-       */
       $scope.unsubscribe = function(stream) {
         var streamId = stream._id;
         var selectedStreamData = appStreams.single.get({streamId: streamId}, function() {
@@ -103,22 +99,14 @@ angular.module('educo.streams')
             $scope.streams = [];
           }
 
-          /**
-           * Check whether to append to feed (at bottom) or insert (at top)
-           */
           if (!options.append) {
             $scope.streams = streamsData.res.records.concat($scope.streams);
           } else {
             $scope.streams = $scope.streams.concat(streamsData.res.records);
           }
-          /**
-           * Check if there are more pages
-           * @type {Boolean}
-           */
+
           $scope.noMoreStreams = !streamsData.res.morePages;
-          /**
-           * Set the updated timestamp
-           */
+
           $scope.lastUpdated = Date.now();
         });
 
@@ -131,11 +119,7 @@ angular.module('educo.streams')
         $scope.actions.createNew = true;
       };
 
-      /**
-       * Create a new post
-       * @param  {Boolean} isValid Will be true if form validation passes
-       * @return {Void}
-       */
+
       $scope.create = function (isValid) {
         if (isValid) {
           var stream = new appStreams.single({

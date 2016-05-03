@@ -36,6 +36,7 @@ module.exports = function(System) {
    * Attributes to identify the plugin
    * @type {Object}
    */
+
   plugin.register.attributes = {
     name: 'Notifications Helper',
     key: 'notifications',

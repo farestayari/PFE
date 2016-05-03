@@ -29,7 +29,17 @@
           <md-button class="md-primary md-raised">
             Share
           </md-button>
-          <md-button class="md-raised" ng-click="reset()" ng-if="postForm.$submitted && postForm.$invalid">
+            <md-button type="button" class="md-old-style">
+                <md-inline-list-icon class="fa fa-upload"></md-inline-list-icon>
+            </md-button>
+
+            <md-button>
+                <label for="file-input">Select</label>
+            </md-button>
+            <input id="file-input" type="file">
+
+
+            <md-button class="md-raised" ng-click="reset()" ng-if="postForm.$submitted && postForm.$invalid">
             Cancel
           </md-button>
         </form>
